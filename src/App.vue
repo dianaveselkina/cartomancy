@@ -1,5 +1,4 @@
 <template>
-  <MyButton />
   <BoardGame />
 </template>
 
