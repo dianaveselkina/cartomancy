@@ -1,14 +1,15 @@
 <template>
   <MyButton />
+  <BoardGame />
 </template>
 
 <script>
-import MyButton from './components/MyButton.vue';
+import BoardGame from './components/BoardGame.vue';
 
 export default {
   name: 'App',
   components: {
-    MyButton,
+    BoardGame,
   },
 };
 </script>
