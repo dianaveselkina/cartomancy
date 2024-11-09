@@ -5,10 +5,10 @@
 
 <style scoped>
 .field {
-  margin: 2rem auto;
-  margin-top: 12rem;
-  width: 72rem;
-  height: 36rem;
+  margin: 1rem auto;
+  margin-top: 2rem;
+  width: 20rem;
+  height: 10rem;
   padding: 1rem;
   border-radius: 1rem;
   cursor: pointer;

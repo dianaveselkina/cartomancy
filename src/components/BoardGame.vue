@@ -11,12 +11,11 @@ import MyButton from './MyButton.vue';
 
 <style scoped>
 .board {
-  margin: 2rem auto;
-  width: 112rem;
-  height: 148rem;
+  margin: 1rem auto;
+  width: 28rem;
+  height: 48rem;
   background: linear-gradient(rgba(186, 124, 55, 0.5), rgba(181, 182, 33, 0.5));
-  border-radius: 10%;
-  border: 15% solid #413e15;
+  border-radius: 5%;
   text-align: center;
 }
 </style>
