@@ -36,12 +36,12 @@ import { ref } from 'vue';
 
 // Создаем реактивный массив изображений
 const images = ref([
-  'https://example.com/image1.jpg', // Замените на реальные URL ваших изображений
+  'https://example.com/image1.jpg', 
   'https://example.com/image2.jpg',
   'https://example.com/image3.jpg',
   'https://example.com/image4.jpg',
   'https://example.com/image5.jpg',
-  // Добавьте другие изображения по необходимости
+  
 ]);
 
 // Реактивная переменная для хранения случайных изображений

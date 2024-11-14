@@ -1,11 +1,9 @@
 <script setup>
-import CardField from './CardField.vue';
 import MyButton from './MyButton.vue';
 </script>
 <template>
   <div class="board">
     <MyButton />
-    <CardField />
   </div>
 </template>
 

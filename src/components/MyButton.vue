@@ -28,26 +28,49 @@ const images = ref([
 
 const randomImage = ref('');
 const randomImage1 = ref('');
+const randomImage2 = ref('');
+const randomImage3 = ref('');
+const clickCount = ref(0);
 
+const functions = [
+  () => {
+    const randomIndex = Math.floor(Math.random() * images.value.length);
+    randomImage1.value = images.value[randomIndex];
+  },
+  () => {
+    const randomIndex = Math.floor(Math.random() * images.value.length);
+    randomImage2.value = images.value[randomIndex];
+  },
+  () => {
+    const randomIndex = Math.floor(Math.random() * images.value.length);
+    randomImage3.value = images.value[randomIndex];
+  },
+];
+
+const handleClick = () => {
+  const index = clickCount.value % functions.length;
+  functions[index]();
+  clickCount.value++;
+};
 const getRandomImage = () => {
   const randomIndex = Math.floor(Math.random() * images.value.length);
   randomImage.value = images.value[randomIndex];
 };
-const getRandomImage1 = () => {
-  const randomIndex = Math.floor(Math.random() * images.value.length);
-  randomImage1.value = images.value[randomIndex];
-};
 </script>
 <template>
   <div>
-    <button class="start" @click="getRandomImage">Start</button>
+    <button class="start" @click="getRandomImage"></button>
     <img
       :src="randomImage"
       v-if="randomImage"
-      @click="getRandomImage1"
+      @click="handleClick"
       class="prediction"
     />
+  </div>
+  <div class="prediction__block">
     <img :src="randomImage1" v-if="randomImage1" class="prediction1" />
+    <img :src="randomImage2" v-if="randomImage2" class="prediction2" />
+    <img :src="randomImage3" v-if="randomImage3" class="prediction3" />
   </div>
 </template>
 
@@ -72,6 +95,16 @@ img {
   width: 6rem;
   height: 8rem;
 }
+.prediction__block {
+  margin: 1rem auto;
+  margin-top: 2rem;
+  width: 20rem;
+  height: 10rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: rgb(255, 255, 255);
+  display: block;
+}
 .prediction {
   cursor: pointer;
 }
@@ -82,6 +115,18 @@ img {
   transform: translate(-50%);
   width: 6rem;
   height: 8rem;
+}
+.prediction2 {
+  position: absolute;
+  top: 29rem;
+  left: 40%;
+  transform: translate(-50%);
+}
+.prediction3 {
+  position: absolute;
+  top: 29rem;
+  left: 60%;
+  transform: translate(-50%);
 }
 
 .game__start:hover {
@@ -109,45 +154,3 @@ img {
   height: 8rem;
 }
 </style>
-<!-- <template>
-  <div>
-    <button @click="handleClick">Нажми меня!</button>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-// Счетчик нажатий на кнопку
-const clickCount = ref(0);
-
-// Определяем массив функций
-const functions = [
-  () => {
-    console.log('Первое нажатие - вызвана функция первого действия');
-    // Ваш код для первого действия
-  },
-  () => {
-    console.log('Второе нажатие - вызвана функция второго действия');
-    // Ваш код для второго действия
-  },
-  () => {
-    console.log('Третье нажатие - вызвана функция третьего действия');
-    // Ваш код для третьего действия
-  },
-];
-
-// Функция для обработки нажатий на кнопку
-const handleClick = () => {
-  const index = clickCount.value % functions.length; // Получить индекс функции
-  functions[index](); // Вызвать соответствующую функцию
-  clickCount.value++; // Увеличить счетчик нажатий
-};
-</script>
-
-<style>
-button {
-  padding: 10px 15px;
-  font-size: 16px;
-}
-</style> -->
