@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue';
 
 const images = ref([
@@ -30,20 +30,24 @@ const randomImage = ref('');
 const randomImage1 = ref('');
 const randomImage2 = ref('');
 const randomImage3 = ref('');
+
 const clickCount = ref(0);
 
 const functions = [
   () => {
     const randomIndex = Math.floor(Math.random() * images.value.length);
     randomImage1.value = images.value[randomIndex];
+    images.value.splice(randomIndex, 1);
   },
   () => {
     const randomIndex = Math.floor(Math.random() * images.value.length);
     randomImage2.value = images.value[randomIndex];
+    images.value.splice(randomIndex, 1);
   },
   () => {
     const randomIndex = Math.floor(Math.random() * images.value.length);
     randomImage3.value = images.value[randomIndex];
+    images.value.splice(randomIndex, 1);
   },
 ];
 
@@ -60,6 +64,7 @@ const getRandomImage = () => {
 <template>
   <div>
     <button class="start" @click="getRandomImage"></button>
+
     <img
       :src="randomImage"
       v-if="randomImage"
@@ -67,6 +72,7 @@ const getRandomImage = () => {
       class="prediction"
     />
   </div>
+
   <div class="prediction__block">
     <img :src="randomImage1" v-if="randomImage1" class="prediction1" />
     <img :src="randomImage2" v-if="randomImage2" class="prediction2" />
@@ -152,5 +158,65 @@ img {
   transform: translate(-50%);
   width: 6rem;
   height: 8rem;
+}
+</style> -->
+<template>
+  <div>
+    <div
+      class="image-container"
+      v-for="(image, index) in images"
+      :key="index"
+      @mouseover="showTooltip(index)"
+      @mouseleave="hideTooltip"
+    >
+      <img :src="image.src" :alt="image.alt" class="image" />
+      <div class="tooltip" v-if="isTooltipVisible && activeIndex === index">
+        {{ image.description }}
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const images = ref([
+  { src: '/img/card1.png', alt: 'Image 1', description: 'Это изображение 1' },
+  { src: '/img/card2.png', alt: 'Image 2', description: 'Это изображение 2' },
+  { src: '/img/card3.png', alt: 'Image 3', description: 'Это изображение 3' },
+  // Добавьте больше изображений при необходимости
+]);
+
+const isTooltipVisible = ref(false);
+const activeIndex = ref(null);
+
+const showTooltip = (index) => {
+  isTooltipVisible.value = true;
+  activeIndex.value = index;
+};
+
+const hideTooltip = () => {
+  isTooltipVisible.value = false;
+  activeIndex.value = null;
+};
+</script>
+
+<style>
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin: 10px; /* Добавьте отступы между изображениями */
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 </style>
